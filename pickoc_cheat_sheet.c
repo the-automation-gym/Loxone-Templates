@@ -1,89 +1,88 @@
-// Pico C Cheat Sheet - Quick Reference
+// Pico C Cheat Sheet - Complete Code
 
-// 1. Variable Declaration and Initialization
-int temperature = 22;
-float humidity = 60.5;
-char letter = 'A';
-
-// 2. Output to Text
-setoutputtext(0, "Hello, Pico C!"); // Output string to text output 0
-
-// 3. Output to Analog/Digital
-setoutput(0, temperature); // Set analog output 0 to temperature
-
-// 4. If-Else Conditional
-if (temperature < 20) {
-    setoutput(1, 1); // Turn on heater if temp < 20
-    setoutputtext(0, "Heater ON");
-} else {
-    setoutput(1, 0); // Turn off heater if temp >= 20
-    setoutputtext(0, "Heater OFF");
-}
-
-// 5. While Loop
-int count = 0;
-while (count < 5) {
-    setoutputtext(0, "Count is " + count);
-    count++;
-    sleep(1000); // Sleep for 1 second to reduce CPU usage
-}
-
-// 6. For Loop
-for (int i = 0; i < 5; i++) {
-    setoutputtext(0, "Iteration " + i); // Loop with a counter
-}
-
-// 7. Function Definition and Use
-int add(int a, int b) {
-    return a + b; // Add two integers
-}
-
+// 1. Variable Declaration and Output
 void main() {
-    int result = add(5, 10);
-    setoutput(0, result); // Output the sum of 5 and 10
-}
+    // Variables
+    int temperature = 22;
+    float humidity = 55.2;
+    char status[] = "Normal";
 
-// 8. Memory Management
-char *response = httpget("api.example.com", "/data"); // HTTP GET request
-if (response != NULL) {
-    setoutputtext(0, response); // Display the response
-    free(response); // Free allocated memory after use
-}
+    // Output variables
+    setoutputtext(0, "Temperature: " + temperature);
+    setoutputtext(1, "Humidity: " + humidity);
+    setoutputtext(2, "Status: " + status);
 
-// 9. Buffers and Strings
-char buffer[256];
-strcpy(buffer, "Hello, Buffer!");
-setoutputtext(0, buffer); // Output content of buffer
+    // 2. Math Operations (Calculate Average Temperature)
+    int temp1 = 22;
+    int temp2 = 18;
+    int temp3 = 20;
+    int avg_temp = (temp1 + temp2 + temp3) / 3;
 
-// 10. Event Handling
-while (TRUE) {
-    int event = getinputevent(); // Check for input events
-    if (event & 0x01) { // If the first input changed
-        float temp = getinput(0); // Get the value of the first input
-        setoutputtext(0, "Temperature: " + temp); // Output the temperature
+    // Output the average temperature
+    setoutputtext(0, "Average Temperature: " + avg_temp + "°C");
+
+    // 3. If-Else Conditional Logic (Control Heater)
+    if (temperature < 20) {
+        setoutput(1, 1);  // Turn heater ON
+        setoutputtext(0, "Heater ON");
+    } else {
+        setoutput(1, 0);  // Turn heater OFF
+        setoutputtext(0, "Heater OFF");
     }
-    sleep(500); // Sleep to reduce CPU usage
-}
 
-// 11. File I/O
-FILE *file = fopen("/dev/tty/my_rs232_extension", "w");
-if (file != NULL) {
-    fprintf(file, "Data written to RS232\n"); // Write to RS232 stream
-    fclose(file); // Close the file/stream
-}
+    // 4. Event Handling (Monitor Temperature Changes)
+    while (TRUE) {
+        int event = getinputevent();  // Check for input event
+        if (event & 0x01) {  // If the first input (temperature sensor) changed
+            int temperature = getinput(0);
+            if (temperature < 20) {
+                setoutput(1, 1);  // Turn heater ON
+                setoutputtext(0, "Heater ON, Temp: " + temperature + "°C");
+            } else {
+                setoutput(1, 0);  // Turn heater OFF
+                setoutputtext(0, "Heater OFF, Temp: " + temperature + "°C");
+            }
+        }
+        sleep(1000);  // Sleep for 1 second to reduce CPU load
+    }
 
-// 12. HTTP Request and Response Handling
-char *weather_data = httpget("api.open-meteo.com", "/v1/forecast?latitude=35&longitude=139&hourly=temperature_2m");
-if (weather_data != NULL) {
-    setoutputtext(0, weather_data); // Output fetched data
-    free(weather_data); // Free memory after use
-}
+    // 5. For Loop (Checking Multiple Sensors)
+    int num_sensors = 3;
+    int sensors[3] = {22, 18, 21};  // Simulated sensor readings
+    for (int i = 0; i < num_sensors; i++) {
+        setoutputtext(i, "Sensor " + (i + 1) + " Temp: " + sensors[i] + "°C");
+    }
 
-// 13. Sleep and CPU Management
-sleep(1000); // Sleep for 1 second (1000 ms)
+    // 6. While Loop (Continuous Monitoring)
+    while (TRUE) {
+        int temp = getinput(0);  // Get temperature reading
+        setoutputtext(0, "Current Temperature: " + temp + "°C");
+        sleep(5000);  // Sleep for 5 seconds to check every 5 seconds
+    }
 
-// Main Program Structure
-void main() {
-    // Your code here
+    // 7. Working with Strings (System Status)
+    char system_status[50];
+    if (temperature > 30) {
+        strcpy(system_status, "Temperature too high");
+    } else {
+        strcpy(system_status, "Temperature normal");
+    }
+    setoutputtext(0, system_status);  // Output the status message
+
+    // 8. HTTP Requests (Fetching Weather Data)
+    char *response;
+    response = httpget("api.open-meteo.com", "/v1/forecast?latitude=35&longitude=139&hourly=temperature_2m");
+    if (response != NULL) {
+        setoutputtext(0, response);  // Output the weather data
+        free(response);  // Free memory after use
+    } else {
+        setoutputtext(0, "Error: Could not fetch weather data");
+    }
+
+    // 9. Debugging and Testing (Basic Output Test)
+    setoutputtext(0, "Testing: Temperature is " + temperature + "°C");
+
+    // 10. Testing Strings (Display System Status)
+    setoutputtext(0, "System Status: " + system_status);
 }
-main(); // Start the program
+main();  // Run the main program
