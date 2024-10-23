@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VirtualOut Title="Wiz Light Loxone UDP Integration" Comment="" Address="/dev/udp/192.168.0.12/38899" CmdInit="" HintText="" CloseAfterSend="true" CmdSep="">
+	<Info templateType="3" minVersion="15031017"/>
+	<VirtualOutCmd Title="On" Comment="" CmdOnMethod="POST" CmdOffMethod="POST" CmdOn="{&quot;id&quot;:1,&quot;method&quot;:&quot;setState&quot;,&quot;params&quot;:{&quot;state&quot;:true}} \r\n" CmdOnHTTP="" CmdOnPost="" CmdOff="" CmdOffHTTP="" CmdOffPost="" CmdAnswer="" HintText="" Analog="false" Repeat="3" RepeatRate="30"/>
+	<VirtualOutCmd Title="Off" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="{&quot;id&quot;:1,&quot;method&quot;:&quot;setState&quot;,&quot;params&quot;:{&quot;state&quot;:false}}\r" CmdOnHTTP="" CmdOnPost="" CmdOff="" CmdOffHTTP="" CmdOffPost="" CmdAnswer="" HintText="" Analog="false" Repeat="3" RepeatRate="30"/>
+	<VirtualOutCmd Title="Brightness" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="{&quot;id&quot;:1,&quot;method&quot;:&quot;setPilot&quot;,&quot;params&quot;:{&quot;temp&quot;:3000,&quot;dimming&quot;:&lt;v&gt;}}\r" CmdOnHTTP="" CmdOnPost="" CmdOff="" CmdOffHTTP="" CmdOffPost="" CmdAnswer="" HintText="If you have RGB lights: 
+{&quot;id&quot;:1,&quot;method&quot;:&quot;setPilot&quot;,&quot;params&quot;:{&quot;r&quot;:255,&quot;g&quot;:0,&quot;b&quot;:0,&quot;dimming&quot;: 75}}\r
+
+If you have Tunable White:
+The current brightness threshold would work - but additional logic such as status,
+formula block or text generator would be required to compile the string, before sending it out." Analog="true" Repeat="3" RepeatRate="60" DestValLow="10" SourceValHigh="100" DestValHigh="100"/>
+	<VirtualOutCmd Title="On/Off" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="{&quot;id&quot;:1,&quot;method&quot;:&quot;setState&quot;,&quot;params&quot;:{&quot;state&quot;:true}} \r" CmdOnHTTP="" CmdOnPost="" CmdOff="{&quot;id&quot;:1,&quot;method&quot;:&quot;setState&quot;,&quot;params&quot;:{&quot;state&quot;:false}}\r" CmdOffHTTP="" CmdOffPost="" CmdAnswer="" HintText="" Analog="false" Repeat="3" RepeatRate="30"/>
+	<VirtualOutCmd Title="Get State" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="{&quot;method&quot;:&quot;getPilot&quot;,&quot;params&quot;:{}}\r" CmdOnHTTP="" CmdOnPost="" CmdOff="" CmdOffHTTP="" CmdOffPost="" CmdAnswer="" HintText="Get the current state of the light.
+You can create logic to check if the state sent matches the actuall state.
+Put this on a pulse generator or have it on the page with a constant 1 on.
+Adjust the repetition interval accordingly" Analog="false" Repeat="1" RepeatRate="60"/>
+</VirtualOut>
