@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VirtualOut Title="ESP32 WLED" Comment="" Address="http://192.168.0.254" CmdInit="" HintText="" CloseAfterSend="true" CmdSep=";">
+	<Info templateType="3" minVersion="15031017"/>
+	<VirtualOutCmd Title="Master Brightness" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="win&amp;A=&lt;v&gt;" CmdOnHTTP="" CmdOnPost="" CmdOff="" CmdOffHTTP="" CmdOffPost="" CmdAnswer="" HintText="" Analog="true" Repeat="0" RepeatRate="0" SourceValHigh="10" DestValHigh="10"/>
+	<VirtualOutCmd Title="On/Off" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="win&amp;T=1" CmdOnHTTP="" CmdOnPost="" CmdOff="win&amp;T=0" CmdOffHTTP="" CmdOffPost="" CmdAnswer="" HintText="" Analog="false" Repeat="0" RepeatRate="0"/>
+	<VirtualOutCmd Title="Under TV Lights" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="win&amp;LX=&lt;v&gt;" CmdOnHTTP="" CmdOnPost="" CmdOff="" CmdOffHTTP="" CmdOffPost="" CmdAnswer="" HintText="" Analog="true" Repeat="0" RepeatRate="0" SourceValHigh="10" DestValHigh="10"/>
+	<VirtualOutCmd Title="Secondary RGB" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="win&amp;LY=&lt;v&gt;" CmdOnHTTP="" CmdOnPost="" CmdOff="" CmdOffHTTP="" CmdOffPost="" CmdAnswer="" HintText="" Analog="true" Repeat="0" RepeatRate="0" SourceValHigh="10" DestValHigh="10"/>
+	<VirtualOutCmd Title="Effect Speed" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="win&amp;SX=&lt;v&gt;" CmdOnHTTP="" CmdOnPost="" CmdOff="" CmdOffHTTP="" CmdOffPost="" CmdAnswer="" HintText="" Analog="true" Repeat="0" RepeatRate="0" SourceValHigh="10" DestValHigh="10"/>
+	<VirtualOutCmd Title="Effect Selection" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="win&amp;FX=&lt;v&gt;" CmdOnHTTP="" CmdOnPost="" CmdOff="" CmdOffHTTP="" CmdOffPost="" CmdAnswer="" HintText="" Analog="true" Repeat="0" RepeatRate="0" SourceValHigh="10" DestValHigh="10"/>
+	<VirtualOutCmd Title="Effect Intensity" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="win&amp;IX=&lt;v&gt;" CmdOnHTTP="" CmdOnPost="" CmdOff="" CmdOffHTTP="" CmdOffPost="" CmdAnswer="" HintText="" Analog="true" Repeat="0" RepeatRate="0" SourceValHigh="10" DestValHigh="10"/>
+	<VirtualOutCmd Title="Solid Effect" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="win&amp;FX=0" CmdOnHTTP="" CmdOnPost="" CmdOff="" CmdOffHTTP="" CmdOffPost="" CmdAnswer="" HintText="" Analog="false" Repeat="0" RepeatRate="0"/>
+	<VirtualOutCmd Title="Off" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="win&amp;T=0" CmdOnHTTP="" CmdOnPost="" CmdOff="" CmdOffHTTP="" CmdOffPost="" CmdAnswer="" HintText="" Analog="false" Repeat="0" RepeatRate="0"/>
+</VirtualOut>
