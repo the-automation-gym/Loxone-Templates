@@ -1,6 +1,0 @@
-Loxone Config Command:
-RGB - {"id":1,"method":"setState","params":{"state":false}}\r
-Tunable White - {"id":1,"method":"setPilot","params":{"temp":<v2>,"dimming":<v1>}} 
-Off - {"id":1,"method":"setState","params":{"state":false}}\r
-
-
